@@ -1,0 +1,7 @@
+{
+  "status": "ok",
+  "time": 1425572027,
+  "api": "v1",
+  "serverid": "1234567890",
+  "console": "http:\/\/panel.cloudatcost.com:12345\/console.html?servername=123456&hostname=1.1.1.1&sshkey=123456&sha1hash=aBcDeFgG"
+}

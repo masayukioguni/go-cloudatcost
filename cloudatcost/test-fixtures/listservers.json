@@ -1,0 +1,37 @@
+{
+  "status": "ok",
+  "time": 1427229580,
+  "api": "v1",
+  "action": "listservers",
+  "data": [
+    {
+      "sid": "test sid",
+      "id": "test id",
+      "packageid": "test packageid",
+      "servername": "test servername",
+      "lable": null,
+      "vmname": "test vmname",
+      "ip": "xxx,xxx,xxx,xxx",
+      "netmask": "xxx,xxx,xxx,xxx",
+      "gateway": "xxx,xxx,xxx",
+      "portgroup": "test portgroup",
+      "hostname": "test hostname",
+      "rootpass": "test rootpass",
+      "vncport": "test vncport",
+      "vncpass": "test vncpass",
+      "servertype": "test servertype",
+      "template": "Ubuntu-14.04.1-LTS-64bit",
+      "cpu": "1",
+      "cpuusage": "1753",
+      "ram": "512",
+      "ramusage": "518.93",
+      "storage": "11",
+      "hdusage": "0.829618619",
+      "sdate": "03/20/2015",
+      "status": "Powered On",
+      "panel_note": null,
+      "mode": "Safe",
+      "uid": "test uid"
+    }
+  ]
+}

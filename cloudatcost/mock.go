@@ -1,4 +1,4 @@
-package digitalocean
+package cloudatcost
 
 import (
 	"io/ioutil"
@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-// A MockClient manages communication with the Digital Ocean API mock.
+// A MockClient manages communication with the CloudatCost API mock.
 type MockClient struct {
 	Mux         *http.ServeMux
 	Client      *Client
@@ -17,9 +17,9 @@ type MockClient struct {
 	FixturesDir string
 }
 
-// NewMockClient returns a new Digital Ocean API client mock.
+// NewMockClient returns a new DCloudatCost API client mock.
 func NewMockClient() *MockClient {
-	client, _ := NewClient(&Option{APIKey: "test"})
+	client, _ := NewClient(&Option{Login: "test", Key: "test"})
 
 	mux := http.NewServeMux()
 	server := httptest.NewServer(mux)
@@ -53,6 +53,6 @@ func testMethod(t *testing.T, r *http.Request, want string) {
 
 func testHeader(t *testing.T, r *http.Request, header string, want string) {
 	if got := r.Header.Get(header); got != want {
-		t.Errorf("Header.Get(%q) returned %s, want %s", header, got, want)
+		t.Errorf("Header.Get(%s) returned %s, want %s", header, got, want)
 	}
 }

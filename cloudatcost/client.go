@@ -1,4 +1,4 @@
-package digitalocean
+package cloudatcost
 
 import (
 	"bytes"
@@ -13,38 +13,35 @@ import (
 // const
 const (
 	LibraryVersion = "0.1"
-	defaultBaseURL = "https://api.digitalocean.com/"
-	userAgent      = "go-tugboat/" + LibraryVersion
+	defaultBaseURL = "https://panel.cloudatcost.com/api/v1/"
+	userAgent      = "a"
 )
-
-// Meta https://developers.digitalocean.com/#meta
-type Meta struct {
-	Total int `json:"total,omitempty"`
-}
 
 // Option Optional parameters
 type Option struct {
-	APIKey string
+	Login string
+	Key   string
 }
 
-// ErrorStatus https://developers.digitalocean.com/#statuses
+// ErrorStatus https://github.com/cloudatcost/api Error:
 type ErrorStatus struct {
-	ID      string `json:"id,omitempty"`
-	Message string `json:"message,omitempty"`
+	Status           string `json:"status,omitempty"`
+	Time             string `json:"time,omitempty"`
+	Error            string `json:"error,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty"`
 }
 
-// A Client manages communication with the Digital Ocean API.
+// A Client manages communication with the CloudAtCost API.
 type Client struct {
-	Option          *Option
-	client          *http.Client
-	BaseURL         *url.URL
-	UserAgent       string
-	SizesService    *SizesService
-	RegionsService  *RegionsService
-	DropletsService *DropletsService
-	ImagesService   *ImagesService
-	SSHKeysService  *SSHKeysService
-	AccountService  *AccountService
+	Option                 *Option
+	client                 *http.Client
+	BaseURL                *url.URL
+	UserAgent              string
+	ListServersService     *ListServersService
+	ListTemplatesService   *ListTemplatesService
+	ListTasksService       *ListTasksService
+	PowerOperationsService *PowerOperationsService
+	ConsoleService         *ConsoleService
 }
 
 // An ErrorResponse reports one or more errors caused by an API request.
@@ -54,23 +51,22 @@ type ErrorResponse struct {
 }
 
 func (r *ErrorResponse) Error() string {
-	return fmt.Sprintf("%v %v: %d %v %+v",
+	return fmt.Sprintf("%v %v: %d %v %+v %+v",
 		r.Response.Request.Method, r.Response.Request.URL,
-		r.Response.StatusCode, r.ErrorStatus.ID, r.ErrorStatus.Message)
+		r.Response.StatusCode, r.ErrorStatus.Status, r.ErrorStatus.Time, r.ErrorStatus.Error, r.ErrorStatus.ErrorDescription)
 }
 
-// NewClient returns a new Digital Ocean API client.
+// NewClient returns a new CloudAtCost API client.
 func NewClient(option *Option) (*Client, error) {
 	httpClient := http.DefaultClient
 	baseURL, _ := url.Parse(defaultBaseURL)
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent, Option: option}
-	c.SizesService = &SizesService{client: c}
-	c.RegionsService = &RegionsService{client: c}
-	c.DropletsService = &DropletsService{client: c}
-	c.ImagesService = &ImagesService{client: c, Page: 1, PerPage: 50}
-	c.SSHKeysService = &SSHKeysService{client: c}
-	c.AccountService = &AccountService{client: c}
+	c.ListServersService = &ListServersService{client: c}
+	c.ListTemplatesService = &ListTemplatesService{client: c}
+	c.ListTasksService = &ListTasksService{client: c}
+	c.PowerOperationsService = &PowerOperationsService{client: c}
+	c.ConsoleService = &ConsoleService{client: c}
 
 	return c, nil
 }
@@ -99,9 +95,6 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	authHeader := "Bearer " + c.Option.APIKey
-
-	req.Header.Set("Authorization", authHeader)
 	if c.UserAgent != "" {
 		req.Header.Add("User-Agent", c.UserAgent)
 	}

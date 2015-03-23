@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "time": 1425504688,
+  "api": "v1",
+  "cid": "734103810",
+  "action": "listtasks",
+  "data": [
+    {
+      "cid": "734103810",
+      "idf": "8548136390745",
+      "serverid": "0",
+      "action": "reset",
+      "status": "completed",
+      "starttime": "1425504093",
+      "finishtime": "1425504094"
+    },
+    {
+      "cid": "734103810",
+      "idf": "2268428551033",
+      "serverid": "254513205",
+      "action": "reset",
+      "status": "pending",
+      "starttime": "1425504295",
+      "finishtime": "1425504312"
+    }
+  ]
+}

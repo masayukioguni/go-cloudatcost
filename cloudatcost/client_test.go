@@ -1,4 +1,4 @@
-package digitalocean
+package cloudatcost
 
 import (
 	"io/ioutil"
@@ -9,7 +9,7 @@ import (
 )
 
 func TestNewClient(t *testing.T) {
-	c, _ := NewClient(&Option{APIKey: "Test"})
+	c, _ := NewClient(&Option{Login: "test", Key: "test"})
 
 	if got, want := c.BaseURL.String(), defaultBaseURL; got != want {
 		t.Errorf("NewClient BaseURL is %v, want %v", got, want)
@@ -39,7 +39,7 @@ func TestCheckResponse(t *testing.T) {
 	res := &http.Response{
 		Request:    &http.Request{},
 		StatusCode: http.StatusBadRequest,
-		Body:       ioutil.NopCloser(strings.NewReader(`{"id":"error id.","message":"error message."}`)),
+		Body:       ioutil.NopCloser(strings.NewReader(`{"error":"error.","time":"error time.","Status":"error status","error_description":"error_description."}`)),
 	}
 	err := CheckResponse(res).(*ErrorResponse)
 
@@ -50,8 +50,10 @@ func TestCheckResponse(t *testing.T) {
 	want := &ErrorResponse{
 		Response: res,
 		ErrorStatus: ErrorStatus{
-			ID:      "error id.",
-			Message: "error message.",
+			Status:           "error status",
+			Time:             "error time.",
+			Error:            "error.",
+			ErrorDescription: "error_description.",
 		},
 	}
 	if !reflect.DeepEqual(err, want) {
