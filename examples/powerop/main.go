@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	Login := os.Getenv("CLOUDATCOAT_API_LOGIN")
-	Key := os.Getenv("CLOUDATCOAT_API_TOKEN")
+	Login := os.Getenv("CLOUDATCOST_API_LOGIN")
+	Key := os.Getenv("CLOUDATCOST_API_KEY")
 	client, _ := cloudatcost.NewClient(&cloudatcost.Option{Login: Login, Key: Key})
 
 	pos, hr, err := client.PowerOperationsService.PowerOn("")
