@@ -11,7 +11,7 @@ func main() {
 	Key := os.Getenv("CLOUDATCOAT_API_TOKEN")
 	client, _ := cloudatcost.NewClient(&cloudatcost.Option{Login: Login, Key: Key})
 
-	pos, hr, err := client.PowerOperationsService.PowerOn("254516103")
+	pos, hr, err := client.PowerOperationsService.PowerOn("")
 
 	if err != nil {
 		fmt.Printf("error: %v\n\n", err)
