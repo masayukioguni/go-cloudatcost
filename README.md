@@ -1,6 +1,6 @@
 # go-cloudatcost
 
-go-cloudatcost is a Go client library for accessing the [cloudatcost API](https://panel.cloudatcost.com/api/v1/).
+go-cloudatcost is a Go client library for accessing the [cloudatcost API](https://github.com/cloudatcost/api).
 
 go-cloudatcost was heavily inspired by the go-github library.
 
@@ -10,4 +10,4 @@ go-cloudatcost was heavily inspired by the go-github library.
 
 **Test Coverage:** [![Coverage Status](https://coveralls.io/repos/masayukioguni/go-cloudatcost/badge.png?branch=master)](https://coveralls.io/r/masayukioguni/go-cloudatcost?branch=master)([gocov report](https://drone.io/github.com/masayukioguni/go-cloudatcost/files/coverage.html))
 
-** Go Doc:** [![GoDoc](https://godoc.org/github.com/masayukioguni/go-cloudatcost/cloudatcost?status.svg)](https://godoc.org/github.com/masayukioguni/go-cloudatcost/cloudatcost)
+**GoDoc:** [![GoDoc](https://godoc.org/github.com/masayukioguni/go-cloudatcost/cloudatcost?status.svg)](https://godoc.org/github.com/masayukioguni/go-cloudatcost/cloudatcost)
