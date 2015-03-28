@@ -53,7 +53,7 @@ type ErrorResponse struct {
 func (r *ErrorResponse) Error() string {
 	return fmt.Sprintf("%v %v: %d %v %+v %+v",
 		r.Response.Request.Method, r.Response.Request.URL,
-		r.Response.StatusCode, r.ErrorStatus.Status, r.ErrorStatus.Time, r.ErrorStatus.Error, r.ErrorStatus.ErrorDescription)
+		r.Response.StatusCode, r.ErrorStatus.Status, r.ErrorStatus.Error, r.ErrorStatus.ErrorDescription)
 }
 
 // NewClient returns a new CloudAtCost API client.

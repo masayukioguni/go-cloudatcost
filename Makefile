@@ -10,7 +10,7 @@ setup:
 all: deps format
 	
 cov:
-	gocov test ./... | gocov-html > /tmp/coverage.html
+	gocov test ./cloudatcost | gocov-html > /tmp/coverage.html
 	open /tmp/coverage.html
 
 deps:
