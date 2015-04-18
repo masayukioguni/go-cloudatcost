@@ -37,11 +37,12 @@ type Client struct {
 	client                 *http.Client
 	BaseURL                *url.URL
 	UserAgent              string
-	ListServersService     *ListServersService
+	ServersService         *ServersService
 	ListTemplatesService   *ListTemplatesService
 	ListTasksService       *ListTasksService
 	PowerOperationsService *PowerOperationsService
 	ConsoleService         *ConsoleService
+	DnsService             *DnsService
 }
 
 // An ErrorResponse reports one or more errors caused by an API request.
@@ -62,11 +63,12 @@ func NewClient(option *Option) (*Client, error) {
 	baseURL, _ := url.Parse(defaultBaseURL)
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent, Option: option}
-	c.ListServersService = &ListServersService{client: c}
+	c.ServersService = &ServersService{client: c}
 	c.ListTemplatesService = &ListTemplatesService{client: c}
 	c.ListTasksService = &ListTasksService{client: c}
 	c.PowerOperationsService = &PowerOperationsService{client: c}
 	c.ConsoleService = &ConsoleService{client: c}
+	c.DnsService = &DnsService{client: c}
 
 	return c, nil
 }
