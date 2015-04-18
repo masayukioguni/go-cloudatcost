@@ -1,5 +1,13 @@
 package cloudatcost
 
+type StandardResponse struct {
+	Status   string `json:"status"`
+	Time     int    `json:"time"`
+	API      string `json:"api"`
+	Serverid string `json:"serverid"`
+	Result   string `json:"result"`
+}
+
 type ConsoleResponse struct {
 	Status   string `json:"status"`
 	Time     int    `json:"time"`

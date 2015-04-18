@@ -11,7 +11,7 @@ func main() {
 	Key := os.Getenv("CLOUDATCOST_API_KEY")
 	client, _ := cloudatcost.NewClient(&cloudatcost.Option{Login: Login, Key: Key})
 
-	listservers, hr, err := client.ListServersService.ListServers()
+	listservers, hr, err := client.ServersService.List()
 
 	if err != nil {
 		fmt.Printf("error: %v\n\n", err)
