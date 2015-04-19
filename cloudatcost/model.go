@@ -95,3 +95,44 @@ type ListServersResponse struct {
 	Action string       `json:"action"`
 	Data   []ListServer `json:"data"`
 }
+
+type CloudProServerResponse struct {
+	Status string `json:"status"`
+	Time   int    `json:"time"`
+	API    string `json:"api"`
+	Action string `json:"action"`
+	Taskid int    `json:"taskid"`
+	Result string `json:"result"`
+}
+
+type CloudProResourcesTotalResponse struct {
+	CPU     string `json:"cpu_total"`
+	Ram     string `json:"ram_total"`
+	Stroage string `json:"storage_total"`
+}
+
+type CloudProResourcesUsedResponse struct {
+	CPU     string `json:"cpu_used"`
+	Ram     string `json:"ram_used"`
+	Stroage string `json:"storage_used"`
+}
+
+type CloudProResourcesData struct {
+	Total []CloudProResourcesTotalResponse `json:"total"`
+	Used  CloudProResourcesUsedResponse    `json:"used"`
+}
+
+type CloudProResourcesResponse struct {
+	Status string                `json:"status"`
+	Time   int                   `json:"time"`
+	API    string                `json:"api"`
+	Action string                `json:"action"`
+	Data   CloudProResourcesData `json:"data"`
+}
+
+type CreateServerOptions struct {
+	Cpu     string `json:"cpu"`
+	Ram     string `json:"ram"`
+	Storage string `json:"storage"`
+	OS      string `json:"os"`
+}

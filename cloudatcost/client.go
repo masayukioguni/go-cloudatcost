@@ -43,6 +43,7 @@ type Client struct {
 	PowerOperationsService *PowerOperationsService
 	ConsoleService         *ConsoleService
 	DnsService             *DnsService
+	CloudProService        *CloudProService
 }
 
 // An ErrorResponse reports one or more errors caused by an API request.
@@ -69,6 +70,7 @@ func NewClient(option *Option) (*Client, error) {
 	c.PowerOperationsService = &PowerOperationsService{client: c}
 	c.ConsoleService = &ConsoleService{client: c}
 	c.DnsService = &DnsService{client: c}
+	c.CloudProService = &CloudProService{client: c}
 
 	return c, nil
 }
