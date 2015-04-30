@@ -1,0 +1,20 @@
+{
+    "status": "ok",
+    "time": 1429120346,
+    "api": "v1",
+    "action": "resources",
+    "data": {
+        "total": [
+            {
+                "cpu_total": "8",
+                "ram_total": "8192",
+                "storage_total": "120"
+            }
+        ],
+        "used": {
+            "cpu_used": "3",
+            "ram_used": "3072",
+            "storage_used": "90"
+        }
+    }
+}
