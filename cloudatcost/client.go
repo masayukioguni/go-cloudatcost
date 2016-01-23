@@ -19,8 +19,9 @@ const (
 
 // Option Optional parameters
 type Option struct {
-	Login string
-	Key   string
+	Login  string
+	Key    string
+	Client *http.Client
 }
 
 // ErrorStatus https://github.com/cloudatcost/api Error:
@@ -61,6 +62,10 @@ func (r *ErrorResponse) Error() string {
 // NewClient returns a new CloudAtCost API client.
 func NewClient(option *Option) (*Client, error) {
 	httpClient := http.DefaultClient
+	if option.Client != nil {
+		httpClient = option.Client
+	}
+
 	baseURL, _ := url.Parse(defaultBaseURL)
 
 	c := &Client{client: httpClient, BaseURL: baseURL, UserAgent: userAgent, Option: option}
